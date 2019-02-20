@@ -1,0 +1,37 @@
+/** CONFIG VARIABLES & MIXINS **/
+// Important: This file should not output anything!
+
+// Breakpoints
+@mixin bp-iPhone4 {@media only screen and (min-width: 320px) {@content;}}
+@mixin bp-iPhone {@media only screen and (min-width: 375px) {@content;}}
+@mixin bp-iPhonePlus {@media only screen and (min-width: 414px) {@content;}}
+@mixin bp-iPad {@media only screen and (min-width: 768px) {@content;}}
+@mixin bp-desktop {@media only screen and (min-width: 1100px) {@content;}}
+
+// Spacing
+$space: 8px;
+$spaceHalf: $space/2;
+$spaceOneHalf: $space * 1.5;
+$space2: $space * 2;
+$space3: $space * 3;
+$space4: $space * 4;
+$space5: $space * 5;
+$space6: $space * 6;
+
+// Colors
+$white: #FFFFFF;
+$black: #000000;
+$gold: #B69B34;
+$red: #EE5555;
+$green: #46B269;
+$blue: #1D8FA9;
+// @mixin blueGradient {background-color: $blue; background: linear-gradient($blue, #0D528A);}
+
+// Text
+$titleLineHeight: 1.2;
+$lineHeight: 1.5;
+
+// Radius
+$radius: 3px;
+
+// Important Heights

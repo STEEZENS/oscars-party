@@ -1,0 +1,27 @@
+// normal
+// bold
+// 100
+// 200 = light
+// 300
+// 400 = normal
+// 500
+// 600 = medium
+// 700 = bold
+// 800 = heavy
+// 900
+
+@font-face {
+  font-family: 'Juicebox';
+  src: url('../../public/juicebox-font/Juicebox_Regular.woff2') format('woff2'),
+       url('../../public/juicebox-font/Juicebox_Regular.woff') format('woff');
+  font-weight: 400;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'Juicebox';
+  src: url('../../public/juicebox-font/Juicebox_Bold.woff2') format('woff2'),
+       url('../../public/juicebox-font/Juicebox_Bold.woff') format('woff');
+  font-weight: 700;
+  font-style: normal;
+}
