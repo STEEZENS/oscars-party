@@ -1,5 +1,8 @@
 # oscars-party
 
+## View it here
+https://steezens.github.io/oscars-party/
+
 ## Project setup
 ```
 npm install
