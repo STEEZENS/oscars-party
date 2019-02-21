@@ -30,4 +30,11 @@ export default {
 </script>
 
 
-<style scoped lang="scss"></style>
+<style scoped lang="scss">
+  @import '../styles/_variables';
+  .Leaderboard {
+    background-color: $white;
+    border-radius: $radius;
+    overflow: hidden;
+  }
+</style>

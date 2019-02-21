@@ -20,12 +20,9 @@ $space6: $space * 6;
 
 // Colors
 $white: #FFFFFF;
-$black: #000000;
-$gold: #B69B34;
-$red: #EE5555;
-$green: #46B269;
-$blue: #1D8FA9;
-// @mixin blueGradient {background-color: $blue; background: linear-gradient($blue, #0D528A);}
+$black: #44423D;
+$gold: #B09753;
+@mixin goldGradient {background-color: $gold; background: linear-gradient(to bottom right, $gold, #927A38);}
 
 // Text
 $titleLineHeight: 1.2;

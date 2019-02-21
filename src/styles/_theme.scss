@@ -1,3 +1,23 @@
 body {
   font-family: 'Juicebox', 'Open Sans', 'Avenir', 'Helvetica', sans-serif;
+  background-color: #F3EFE4;
+}
+
+html {
+  min-height: 100vh;
+}
+
+h4 {
+  font-size: 14px;
+  font-weight: 700;
+  color: $white;
+  letter-spacing: .2;
+}
+
+.uppercase {
+  text-transform: uppercase;
+}
+
+.muted {
+  opacity: .4;
 }
