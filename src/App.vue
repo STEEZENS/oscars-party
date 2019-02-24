@@ -5,119 +5,34 @@
       <div>
         <img class="Logo" src="./assets/the-oscars-party-logo-gold.png" alt="The Oscars Party Logo"/>
       </div>
+
       <nav class="Nav">
         <button
           class="Nav_item"
-          :class="{ 'active': activeTab === 'leaderboard' }"
-          @click="setActiveTab('leaderboard')">
+          :class="{ 'active': $route.name === 'leaderboard' }"
+          @click="$router.push('/leaderboard')">
           Leaderboard
         </button>
         <button
           class="Nav_item"
-          :class="{ 'active': activeTab === 'scorecards' }"
-          @click="setActiveTab('scorecards')">
+          :class="{ 'active': $route.name === 'scorecards' }"
+          @click="$router.push('/scorecards')">
           Scorecards
         </button>
       </nav>
     </header>
 
-    <section class="Leaderboard ContentContainer" v-show="activeTab === 'leaderboard'">
-      <h2 class="SectionTitle">Leaderboard</h2>
-      <Leaderboard :leaderboard="leaderboard"/>
-    </section>
-
-    <section class="Scorecards ContentContainer" v-show="activeTab === 'scorecards'">
-      <h2 class="SectionTitle">Scorecards</h2>
-      <div class="Cards">
-        <AwardCategory
-          v-for="(nomination, nominationIndex) in nominations"
-          :key="'nomination' + nominationIndex"
-          :name="nomination.category"
-          :points="nomination.points">
-          <Nominee
-            v-for="(nominee, nomineeIndex) in nomination.nominees"
-            :key="'nominee' + nominationIndex + nomineeIndex"
-            :index="nomineeIndex"
-            :nominee="nominee"
-            :scored="nomination.scored"/>
-        </AwardCategory>
-      </div>
-    </section>
+    <transition name="fade" appear mode="out-in">
+      <router-view/>
+    </transition>
 
   </div>
 </template>
 
 
 <script>
-import Axios from 'axios';
-import Leaderboard from './components/Leaderboard.vue';
-import AwardCategory from './components/AwardCategory.vue';
-import Nominee from './components/Nominee.vue';
-
 export default {
   name: 'App',
-  components: {
-    Leaderboard,
-    AwardCategory,
-    Nominee,
-  },
-  data() {
-    return {
-      activeTab: 'leaderboard',
-      nomineesCodepenID: 'XOGEdR',
-      userPicksGoogleSpreadsheetID: '1MV59RZNuWUGNoKf1eMq_Ai6_jTP4HHdFDbmVRk6qJb8',
-      gsxPrefix: 'gsx$',
-      gsxTextPrefix: '$t',
-      nominees: [],
-      userPicks: [],
-    };
-  },
-  computed: {
-    leaderboard() {
-      return this.userPicks.map(user => ({
-        name: user.name,
-        score: this.nominees.reduce((totalPoints, nominee, nomineeIndex) => {
-          return totalPoints + (nominee.nominees[nominee.winner] === user.picks[nomineeIndex] ? nominee.points : 0);
-        }, 0),
-      })).sort((a, b) => b.score - a.score);
-    },
-    nominations() {
-      return this.nominees.map((category, categoryIndex) => ({
-        category: category.category,
-        points: category.points,
-        scored: category.winner !== null,
-        nominees: category.nominees.map((nominee, nomineeIndex) => ({
-          name: nominee,
-          winner: (nomineeIndex === category.winner),
-          picks: this.userPicks.filter((user) => {
-            return (this.lowercaseAndSpaceless(user.picks[categoryIndex]) === this.lowercaseAndSpaceless(nominee));
-          }).map(u => u.name),
-        })),
-      }));
-    },
-  },
-  async created() {
-    const nomineesData = await Axios.get(`https://codepen.io/camstephensdomo/pen/${this.nomineesCodepenID}.js`);
-    this.nominees = nomineesData.data;
-
-    const userPicksData = await Axios.get(`https://spreadsheets.google.com/feeds/list/${this.userPicksGoogleSpreadsheetID}/1/public/values?alt=json`);
-    userPicksData.data.feed.entry.forEach(userEntry => this.userPicks.push({
-      name: userEntry[this.findObjectKeyBySubstring(userEntry, 'name')][this.gsxTextPrefix],
-      picks: this.nominees.map(nominee => userEntry[`${this.gsxPrefix}${this.lowercaseAndSpaceless(nominee.category)}`][this.gsxTextPrefix]),
-    }));
-  },
-  methods: {
-    setActiveTab(value) {
-      if (this.activeTab === value) return;
-      this.activeTab = value;
-    },
-    findObjectKeyBySubstring(obj, substring) {
-      return Object.keys(obj).filter(k => k.indexOf(substring) !== -1);
-    },
-    lowercaseAndSpaceless(word) {
-      return word.toLowerCase().split(' ').join('');
-    },
-  },
 };
 </script>
 
@@ -156,6 +71,7 @@ export default {
     background-color: $gold;
     border-radius: $height / 2;
     white-space: nowrap;
+    box-shadow: 0 6px 24px -4px rgba($black, .25);
     .Nav_item {
       font-family: inherit;
       background-color: transparent;
@@ -168,39 +84,5 @@ export default {
       transition: all .3s ease 0s;
       &.active { color: rgba($white, 1); }
     }
-  }
-
-  .SectionTitle {
-    position: relative;
-    z-index: -1;
-    font-size: 70px;
-    font-weight: 700;
-    letter-spacing: -2px;
-    margin-bottom: -28px;
-    margin-left: -$space3;
-    color: rgba($gold, .15);
-  }
-  @include bp-iPad {
-    .SectionTitle {
-      font-size: 120px;
-      margin-bottom: -47px;
-      margin-left: -$space4;
-    }
-  }
-
-  .ContentContainer {
-    margin: 0 auto;
-  }
-  @include bp-iPad {
-    .ContentContainer {
-      width: 95%;
-      max-width: 1200px;
-    }
-  }
-
-  .Cards {
-    display: flex;
-    flex-wrap: wrap;
-    align-items: stretch;
   }
 </style>

@@ -5,3 +5,13 @@
 .text-left { text-align: left; }
 .text-center { text-align: center; }
 .text-right { text-align: right; }
+
+.ContentContainer {
+  margin: 0 auto;
+}
+@include bp-iPad {
+  .ContentContainer {
+    width: 95%;
+    max-width: 1200px;
+  }
+}

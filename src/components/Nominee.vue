@@ -1,5 +1,5 @@
 <template>
-  <div :class="['Nominee', { 'winner': nominee.winner } ]">
+  <div :class="['Nominee', { 'winner': nominee.winner }, {'scored': scored } ]">
     <p
       class="_name"
       v-text="nominee.name">
@@ -31,11 +31,31 @@ export default {
 <style scoped lang="scss">
   @import '../styles/_variables';
 
+  .Canvas {
+    position: absolute;
+    top: 0; left: 0;
+    width: 100%;
+    height: 100%;
+  }
+
   .Nominee {
+    position: relative;
     overflow: hidden;
     padding: $spaceOneHalf $space2;
   }
-  .Nominee.winner { color: green !important; }
+  // .Nominee.scored { padding-left: $space4; }
+  .Nominee.winner ._name:before {
+    $size: 24px;
+    content: "";
+    display: inline-block;
+    width: $size; height: $size;
+    background-image: url('../assets/oscar-icon-gold.png');
+    background-position: center;
+    background-size: contain;
+    background-repeat: no-repeat;
+    vertical-align: text-bottom;
+    margin-right: $space;
+  }
 
   .Nominee:not(:last-child) {
     border-bottom: 1px solid rgba($black, .1);

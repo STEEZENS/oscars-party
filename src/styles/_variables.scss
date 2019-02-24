@@ -22,6 +22,7 @@ $space6: $space * 6;
 $white: #FFFFFF;
 $black: #44423D;
 $gold: #B09753;
+$red: #EE5555;
 @mixin goldGradient {background-color: $gold; background: linear-gradient(to bottom right, $gold, #927A38);}
 
 // Text

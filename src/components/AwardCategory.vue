@@ -2,7 +2,7 @@
   <div class="AwardCategory">
     <header class="_header">
       <h4 v-text="name" class="uppercase"></h4>
-      <h4 class="muted">
+      <h4 class="muted" style="font-size: 14px;">
         <span v-text="points"></span>
         <span> points</span>
       </h4>

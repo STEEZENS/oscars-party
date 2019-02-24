@@ -9,7 +9,9 @@
   },
   "dependencies": {
     "axios": "^0.18.0",
-    "vue": "^2.6.6"
+    "canvas-confetti": "0.0.3",
+    "vue": "^2.6.6",
+    "vue-router": "^3.0.1"
   },
   "devDependencies": {
     "@vue/cli-plugin-babel": "^3.0.3",
