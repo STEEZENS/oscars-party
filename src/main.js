@@ -19,7 +19,8 @@ new Vue({
   data() {
     return {
       nomineesCodepenID: 'XOGEdR',
-      userPicksGoogleSpreadsheetID: '1OHZ0mOGjNdTvZgdq_TdyxolU6GDl-iAgYTe-TOtikN0',
+      userPicksGoogleSpreadsheetID: '1FAIpQLSdUaPfMdqVHp62ANkY92mtJHzWSsy7YsUZCLWvhIKeFC_FCbQ',
+      // userPicksGoogleSpreadsheetID: '1OHZ0mOGjNdTvZgdq_TdyxolU6GDl-iAgYTe-TOtikN0',
       gsxPrefix: 'gsx$',
       gsxTextPrefix: '$t',
       nominees: [],
